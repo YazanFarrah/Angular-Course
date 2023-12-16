@@ -1,16 +1,14 @@
-<!-- event binding -->
 <label for="serverName">Server Name</label>
-<!-- 
-<input type="text" class="form-control" name="" id="serverName" 
-(input)="onUpdateServerName($event)"
-/> -->
 
 <!-- Two-Way-Databinding -->
-<input type="text" class="form-control" name="" id="serverName" 
-[(ngModel)]="serverName"
+<input
+  type="text"
+  class="form-control mb-3"
+  name=""
+  id="serverName"
+  [(ngModel)]="serverName"
 />
 
-<p>{{ serverName }}</p>
 <button
   class="btn btn-primary"
   [disabled]="!allowNewServer"
@@ -28,3 +26,12 @@
 <p>{{ stringInterpolation }}</p>
 
 <app-server></app-server>
+<hr />
+
+<input type="text" name="" id="" class="form-control" [(ngModel)]="username"/>
+
+<p class="mt-3">
+    {{username}}
+</p>
+
+<button class="btn btn-primary" [disabled]="username === '' " (click)="resetUsername()" >Reset username</button>
