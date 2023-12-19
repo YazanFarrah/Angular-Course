@@ -26,8 +26,6 @@
 
 <!-- if we want to use ngif with else: we do this -->
 
-
-
 <p *ngIf="serverCreated; else noServer">
   Server was created, server name is {{ serverName }}
 </p>
@@ -44,4 +42,12 @@
   <p>No server was created</p>
 } -->
 
+<!-- with *ngFor we can use a for of loop easily -->
+<app-server *ngFor="let server of servers"></app-server>
+
+
+<!-- only in Angular 17 we can use @for-->
+
+<!-- @for(server of servers; track server){
 <app-server></app-server>
+} -->

@@ -1,1 +1,12 @@
-<p>{{'Server'}} with ID {{ serverId }} is {{getServerStatus()}}</p>
+<!-- add [ngStyle] as attribute directive 'property binding' to change the style based on a condition like below -->
+
+<!-- here in [ngClass] we can use the css and based on a condition use it, for example here
+if the serverStatus is online then attach the online class in css in ./server.component.css
+to this <p></p> -->
+<p
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{ online: serverStatus === 'online' }"
+  
+>
+  {{ "Server" }} with ID {{ serverId }} is {{ getServerStatus() }}
+</p>
