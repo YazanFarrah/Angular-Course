@@ -6,41 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  //simple input output example
-  //here for the @Input that comes from the parent to the child
 
-  currentItem: string;
+  serverElements = [{ type: 'server', name: 'TestServer', content: 'A test' }];
 
-  addItem(item: string) {
-    this.currentItem = item;
+  onServerAdded(serverData: { serverName: string; serverContent: string }) {
+    this.serverElements.push({
+      type: 'server',
+      name: serverData.serverName,
+      content: serverData.serverContent,
+    });
   }
 
-  //now recieving the data from child to parent
-
-  items: string[] = [];
-
-  addItemFromChild(childItem:string){
-    this.items.push(childItem);
+  onBluePrintAdded(blueprintData: {
+    serverName: string;
+    serverContent: string;
+  }) {
+    this.serverElements.push({
+      type: 'blueprint',
+      name: blueprintData.serverName,
+      content: blueprintData.serverContent,
+    });
   }
-
-  // serverElements = [{ type: 'server', name: 'TestServer', content: 'A test' }];
-
-  // onServerAdded(serverData: { serverName: string; serverContent: string }) {
-  //   this.serverElements.push({
-  //     type: 'server',
-  //     name: serverData.serverName,
-  //     content: serverData.serverContent,
-  //   });
-  // }
-
-  // onBluePrintAdded(blueprintData: {
-  //   serverName: string;
-  //   serverContent: string;
-  // }) {
-  //   this.serverElements.push({
-  //     type: 'blueprint',
-  //     name: blueprintData.serverName,
-  //     content: blueprintData.serverContent,
-  //   });
-  // }
 }
