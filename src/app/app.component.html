@@ -1,33 +1,24 @@
 <div class="container">
-  <app-cockpit
-    (serverCreated)="onServerAdded($event)"
-    (bluePrintCreated)="onBluePrintAdded($event)"
-  ></app-cockpit>
-  <hr />
   <div class="row">
     <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="onChangeFirst()">
-        Change first Element
-      </button>
+      <app-game-control
+        (intervalFired)="onIntervalFired($event)"
+      ></app-game-control>
+    </div>
+  </div>
 
-      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Component</button>
-      <app-server-element
-        *ngFor="let serverElement of serverElements"
-        [srvElement]="serverElement"
-        [name]="serverElement.name"
-      >
-        <!-- this way we can make it reusable -->
-        <!-- now we can access contentParagraph in app.component.ts 
-        and in the server-element.component.ts using @ContentChild -->
-        <p #contentParagraph>
-          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{
-            serverElement.content
-          }}</strong>
-          <em *ngIf="serverElement.type === 'blueprint'">{{
-            serverElement.content
-          }}</em>
-        </p>
-      </app-server-element>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-odd *ngFor="let oddNum of oddNumbers" [number]="oddNum"></app-odd>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <app-even
+        *ngFor="let evenNum of evenNumbers"
+        [number]="evenNum"
+      ></app-even>
     </div>
   </div>
 </div>
