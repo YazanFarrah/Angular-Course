@@ -1,17 +1,30 @@
-<div class="layout" [dir]="'dir' | translate">
-  <app-header></app-header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <app-recipes></app-recipes>
-        <app-shopping-list></app-shopping-list>
-      </div>
+<div class="container">
+  <!-- <app-cockpit 
+  (serverCreated)="onServerAdded($event)"
+  (bluePrintCreated)="onBluePrintAdded($event)"
+  ></app-cockpit> -->
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- <app-server-element
+        *ngFor="let serverElement of serverElements"
+        [srvElement] = "serverElement"
+      ></app-server-element> -->
+      <p class="text-body-secondary">Passing item from PARENT to CHILD</p>
+      <label for="item">Item</label>
+      <input type="text" id="item" class="form-control" #itemInput />
+      <button class="btn btn-success my-3" (click)="addItem(itemInput.value)">
+        Add Item
+      </button>
+
+      <app-input-output
+        [item]="currentItem"
+        (itemFromChild)="addItemFromChild($event)"
+      ></app-input-output>
+    
+      <ul>
+        <li *ngFor="let item of items">{{ item }}</li>
+      </ul>
     </div>
-    <footer>
-      <select name="" id="" (change)="translate($event)">
-        <option value="en">English</option>
-        <option value="ar">Arabic</option>
-      </select>
-    </footer>
   </div>
 </div>
