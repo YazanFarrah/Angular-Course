@@ -4,16 +4,15 @@
     <label>Server Name</label>
     <!-- <input type="text" class="form-control" [(ngModel)]="newServerName" /> -->
     <!-- another way is by using local reference : -->
-    <input type="text" 
-    class="form-control" 
-    #serverName />
+    <input type="text" class="form-control" #serverName />
     <label>Server Content</label>
-    <input type="text" class="form-control" [(ngModel)]="newServerContent" />
+    <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent" /> -->
+    <input type="text" class="form-control" #serverContentInput />
     <br />
     <button class="btn btn-primary me-1" (click)="onAddServer(serverName)">
       Add Server
     </button>
-    <button class="btn btn-primary" (click)="onAddBlueprint()">
+    <button class="btn btn-primary" (click)="onAddBlueprint(serverName)">
       Add Server Blueprint
     </button>
   </div>
