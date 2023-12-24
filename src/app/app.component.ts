@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+//translation
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  
+  constructor(private translateService: TranslateService) {}
+
+  translate(event: any) {
+    this.translateService.use(event.target.value);
+  }
 }
