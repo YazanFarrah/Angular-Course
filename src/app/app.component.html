@@ -17,7 +17,9 @@
         [name]="serverElement.name"
       >
         <!-- this way we can make it reusable -->
-        <p>
+        <!-- now we can access contentParagraph in app.component.ts 
+        and in the server-element.component.ts using @ContentChild -->
+        <p #contentParagraph>
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{
             serverElement.content
           }}</strong>
