@@ -11,15 +11,6 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
-//localization:
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-export function httpTranslateLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,18 +22,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     ShoppingListComponent,
     ShoppingEditComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
