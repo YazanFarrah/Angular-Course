@@ -1,4 +1,10 @@
-import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 //better practice because angular works with service workers as well
 // and there, we don't have access to the DOM
 @Directive({
@@ -8,20 +14,33 @@ export class BetterHighlightDirective implements OnInit {
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    // if I wanted to set single style: 
-
+    // if I wanted to set single style:
     // this.renderer.setStyle(
     //   this.elRef.nativeElement,
     //   'background-color',
     //   'blue'
     // );
+    // if I wanted to set multiple styles:
+    // this.renderer.setProperty(
+    //   this.elRef.nativeElement,
+    //   'style',
+    //   'color: white; background-color: blue'
+    // );
+  }
 
-    // if I wanted to set multiple styles: 
-
+  @HostListener('mouseenter') mouseOver(eventData: Event) {
     this.renderer.setProperty(
       this.elRef.nativeElement,
       'style',
-      'color: white; background-color: blue'
+      'background-color: blue; cursor:pointer'
+    );
+  }
+
+  @HostListener('mouseleave') mouseLeave(eventData: Event) {
+    this.renderer.setProperty(
+      this.elRef.nativeElement,
+      'style',
+      'background-color: transparent'
     );
   }
 }
