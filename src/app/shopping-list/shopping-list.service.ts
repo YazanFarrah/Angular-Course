@@ -7,10 +7,7 @@ import { Ingredient } from '../shared/ingredient.model';
 export class ShoppingListService {
   ingredientsChanged = new EventEmitter<Ingredient[]>();
 
-  private ingredients: Ingredient[] = [
-    new Ingredient('Apples', 5),
-    new Ingredient('Tomatoes', 10),
-  ];
+  private ingredients: Ingredient[] = [];
 
   constructor() {}
 
@@ -19,7 +16,14 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    const index = this.ingredients.findIndex(
+      (i) => i.name.toLowerCase() === ingredient.name.toLowerCase()
+    );
+    if (index > -1) {
+      this.ingredients[index].amount += ingredient.amount;
+    } else {
+      this.ingredients.push(ingredient);
+    }
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
@@ -37,7 +41,7 @@ export class ShoppingListService {
   addIngredients(ingredients: Ingredient[]) {
     for (const ingredient of ingredients) {
       const index = this.ingredients.findIndex(
-        (i) => i.name === ingredient.name
+        (i) => i.name.toLowerCase() === ingredient.name.toLowerCase()
       );
 
       if (index > -1) {

@@ -11,6 +11,10 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { MessageService } from 'primeng/api';
+import { ToastService } from './toast-message.service';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,8 +27,8 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     ShoppingListComponent,
     ShoppingEditComponent,
   ],
-  imports: [BrowserModule, FormsModule],
-  providers: [ShoppingListService],
+  imports: [BrowserModule, FormsModule, ToastModule, BrowserAnimationsModule ],
+  providers: [ShoppingListService, MessageService, ToastService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
