@@ -16,17 +16,25 @@ export class ShoppingEditComponent {
     private shoppingListService: ShoppingListService,
     private toast: ToastService
   ) {}
-  showMessage() {
-   this.toast.showSuccess('Hello');
-  }
+
   onAddItem() {
-    const ingredientName = this.nameInputRef.nativeElement.value;
-    const ingredientAmount = +this.amountInputRef.nativeElement.value;
-    if (ingredientName.length === 0) {
-      this.showMessage();
+    let ingredientName = this.nameInputRef.nativeElement.value;
+    let ingredientAmount = +this.amountInputRef.nativeElement.value;
+
+    if (!ingredientName && ingredientAmount === 0) {
+      return this.toast.showWarn("Name and Amount can't be empty");
+    }
+
+    if (!ingredientName || ingredientAmount === 0) {
+      const message = !ingredientName
+        ? "Name can't be empty"
+        : "Amount can't be empty";
+
+      this.toast.showWarn(message);
       return;
     }
     const newIngredient = new Ingredient(ingredientName, ingredientAmount);
     this.shoppingListService.addIngredient(newIngredient);
+  
   }
 }
